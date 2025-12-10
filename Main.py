@@ -24,4 +24,4 @@ def ping():
 
 @app.get("/vehicle/{id}", response_model=Vehicle)
 def get_vehicle(id: int):
-    return Vehicle(id=id, make="Example", model="Car", year=2020, price=25000)
+    return Vehicle(id=id, make="Toyota", model="Corolla", year=2001, price=285000)
