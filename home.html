@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarrosMocanos.com - Fase 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f3f3f3;
+      color: #222;
+    }
+
+    header {
+      background: #c62828;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .section-title {
+      margin: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #c62828;
+    }
+
+    /* GRID RESPONSIVO */
+    .grid {
+      display: grid;
+      gap: 15px;
+      padding: 15px;
+    }
+    @media (min-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* TARJETAS */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .agency-name, .vehicle-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .premium-badge {
+      background: gold;
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .whatsapp-btn {
+      background: #25d366;
+      color: white;
+      display: inline-block;
+      padding: 8px 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>CarrosMocanos.com – Fase 1</header>
+
+<!-- DIRECTORIO -->
+<h2 class="section-title">Directorio de Agencias</h2>
+<div id="agencies" class="grid"></div>
+
+<!-- CMD -->
+<h2 class="section-title">Carros Mocanos Direct (CMD)</h2>
+<div id="cmd" class="grid"></div>
+
+<script>
+// CARGAR AGENCIAS
+fetch("data/agencies.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("agencies");
+
+    data.agencies.forEach(a => {
+      const html = `
+        <div class="card">
+          <img src="${a.logo}" alt="${a.name}">
+          <div class="agency-name">${a.name}</div>
+          <div>${a.location}</div>
+          <a class="whatsapp-btn" href="https://wa.me/${a.whatsapp}">
+            WhatsApp
+          </a>
+        </div>`;
+      container.innerHTML += html;
+    });
+  });
+
+// CARGAR CMD
+fetch("data/cmd.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("cmd");
+
+    data.cmd_vehicles.forEach(v => {
+      const premium = v.premium ? `<div class="premium-badge">Premium</div>` : "";
+
+      const html = `
+        <div class="card">
+          ${premium}
+          <img src="${v.images[0]}" alt="${v.make} ${v.model}">
+          <div class="vehicle-title">${v.make} ${v.model} ${v.year}</div>
+          <div><strong>RD$ ${v.price.toLocaleString()}</strong></div>
+          <a class="whatsapp-btn" href="https://wa.me/${v.contact.whatsapp}">
+            Me interesa
+          </a>
+        </div>`;
+      container.innerHTML += html;
+    });
+  });
+</script>
+
+</body>
+</html>

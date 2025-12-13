@@ -1,0 +1,34 @@
+{
+  "agencies": [
+    {
+      "id": 1,
+      "name": "AutoMoca Imports",
+      "logo": "/assets/logos/automoca.png",
+      "phone": "+1-809-555-1010",
+      "whatsapp": "+18095551010",
+      "location": "Calle Duarte #45, Moca",
+      "inventory_url": "#",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "JR AutoVentas",
+      "logo": "/assets/logos/jr.png",
+      "phone": "+1-809-555-2020",
+      "whatsapp": "+18095552020",
+      "location": "Av. Ramón Cáceres #12, Moca",
+      "inventory_url": "#",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "Premium Motors Moca",
+      "logo": "/assets/logos/premium.png",
+      "phone": "+1-809-555-3030",
+      "whatsapp": "+18095553030",
+      "location": "Plaza La Concepción, Local 5",
+      "inventory_url": "#",
+      "featured": false
+    }
+  ]
+}

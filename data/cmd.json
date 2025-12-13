@@ -1,0 +1,44 @@
+{
+  "cmd_vehicles": [
+    {
+      "id": 101,
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2001,
+      "price": 285000,
+      "mileage": 185000,
+      "images": [
+        "/assets/cmd/101/front.png",
+        "/assets/cmd/101/side.png",
+        "/assets/cmd/101/interior.png"
+      ],
+      "video": null,
+      "description": "Vehículo en buenas condiciones, motor suave, documentación al día.",
+      "premium": false,
+      "contact": {
+        "name": "Ricardo",
+        "phone": "+1-809-000-0000",
+        "whatsapp": "+18090000000"
+      }
+    },
+    {
+      "id": 102,
+      "make": "Hyundai",
+      "model": "Tucson",
+      "year": 2017,
+      "price": 985000,
+      "mileage": 72000,
+      "images": [
+        "/assets/cmd/102/front.png"
+      ],
+      "video": "/assets/cmd/102/video.mp4",
+      "description": "Vehículo muy cuidado, un solo dueño.",
+      "premium": true,
+      "contact": {
+        "name": "Ricardo",
+        "phone": "+1-809-000-0000",
+        "whatsapp": "+18090000000"
+      }
+    }
+  ]
+}
