@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carros Mocanos | Directorio de agencias de vehículos en Moca</title>
-  <meta name="description" content="Encuentra todas las agencias de vehículos de Moca en un solo lugar. Vehículos nuevos y usados con contacto directo por WhatsApp." />
-  <link rel="canonical" href="https://carrosmocanos.com" />
+  <title>Agencias en Moca | Carros Mocanos</title>
+  <meta name="description" content="Listado completo de agencias de vehículos en Moca con contacto directo por WhatsApp." />
+  <link rel="canonical" href="https://carrosmocanos.com/agencias" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
@@ -21,7 +21,7 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="agencias.html">Directorio</a></li>
+        <li><a href="agencias.html" aria-current="page">Directorio</a></li>
         <li><a href="cmd.html">CM Directo</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
@@ -29,7 +29,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <ul>
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="agencias.html">Directorio</a></li>
+        <li><a href="agencias.html" aria-current="page">Directorio</a></li>
         <li><a href="cmd.html">CM Directo</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
@@ -37,50 +37,15 @@
   </header>
 
   <main class="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title">El directorio de agencias verificadas en Moca.</h1>
-          <p>Encuentra agencias confiables y vehículos gestionados por CarrosMocanos con contacto directo por WhatsApp.</p>
-        </div>
-        <div class="hero-image">
-          <picture>
-            <source media="(max-width: 767px)" srcset="assets/images/hero-mobile.svg">
-            <img src="assets/images/hero-desktop.svg" alt="Carros en vitrina" loading="lazy" />
-          </picture>
+    <section class="section" aria-labelledby="agencies-page-title">
+      <div class="section-heading">
+        <div>
+          <h1 id="agencies-page-title" class="page-title">Directorio completo de agencias</h1>
+          <p class="lead">Agencias verificadas y en proceso de verificación en Moca.</p>
         </div>
       </div>
+      <div id="agenciesPage" class="cards-grid agencies" aria-live="polite"></div>
     </section>
-
-    <aside class="ad-block" aria-label="Publicidad superior">
-      <div class="ad-slot">Espacio publicitario</div>
-    </aside>
-
-    <section class="section" aria-labelledby="agencies-heading">
-      <div class="section-heading">
-        <h2 id="agencies-heading">Directorio de Agencias de Moca</h2>
-        <p>Agencias verificadas con contacto directo.</p>
-      </div>
-      <div id="agencyCards" class="cards-grid agencies" aria-live="polite"></div>
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-primary" href="agencias.html">Ver todas las agencias</a>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="cmd-heading">
-      <div class="section-heading">
-        <h2 id="cmd-heading">CM Directo</h2>
-        <p>Vehículos gestionados directamente por CarrosMocanos.</p>
-      </div>
-      <div id="cmdCards" class="cards-grid cmd" aria-live="polite"></div>
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-outline" href="cmd.html">Ver más vehículos</a>
-      </div>
-    </section>
-
-    <aside class="ad-block" aria-label="Publicidad inferior">
-      <div class="ad-slot">Espacio publicitario</div>
-    </aside>
   </main>
 
   <footer class="footer">
