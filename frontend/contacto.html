@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carros Mocanos | Directorio de agencias de vehículos en Moca</title>
-  <meta name="description" content="Encuentra todas las agencias de vehículos de Moca en un solo lugar. Vehículos nuevos y usados con contacto directo por WhatsApp." />
-  <link rel="canonical" href="https://carrosmocanos.com" />
+  <title>Contacto | Carros Mocanos</title>
+  <meta name="description" content="Contacto para agencias y clientes de CarrosMocanos. Escríbenos por correo o WhatsApp." />
+  <link rel="canonical" href="https://carrosmocanos.com/contacto" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
@@ -23,7 +23,7 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="agencias.html">Directorio</a></li>
         <li><a href="cmd.html">CM Directo</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="contacto.html" aria-current="page">Contacto</a></li>
       </ul>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
@@ -31,56 +31,38 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="agencias.html">Directorio</a></li>
         <li><a href="cmd.html">CM Directo</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="contacto.html" aria-current="page">Contacto</a></li>
       </ul>
     </div>
   </header>
 
   <main class="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title">El directorio de agencias verificadas en Moca.</h1>
-          <p>Encuentra agencias confiables y vehículos gestionados por CarrosMocanos con contacto directo por WhatsApp.</p>
-        </div>
-        <div class="hero-image">
-          <picture>
-            <source media="(max-width: 767px)" srcset="assets/images/hero-mobile.svg">
-            <img src="assets/images/hero-desktop.svg" alt="Carros en vitrina" loading="lazy" />
-          </picture>
+    <section class="section" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <div>
+          <h1 id="contact-title" class="page-title">Contacto</h1>
+          <p class="lead">Escríbenos para aparecer en el directorio o para más información.</p>
         </div>
       </div>
-    </section>
-
-    <aside class="ad-block" aria-label="Publicidad superior">
-      <div class="ad-slot">Espacio publicitario</div>
-    </aside>
-
-    <section class="section" aria-labelledby="agencies-heading">
-      <div class="section-heading">
-        <h2 id="agencies-heading">Directorio de Agencias de Moca</h2>
-        <p>Agencias verificadas con contacto directo.</p>
-      </div>
-      <div id="agencyCards" class="cards-grid agencies" aria-live="polite"></div>
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-primary" href="agencias.html">Ver todas las agencias</a>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="cmd-heading">
-      <div class="section-heading">
-        <h2 id="cmd-heading">CM Directo</h2>
-        <p>Vehículos gestionados directamente por CarrosMocanos.</p>
-      </div>
-      <div id="cmdCards" class="cards-grid cmd" aria-live="polite"></div>
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-outline" href="cmd.html">Ver más vehículos</a>
+      <div class="contact-card">
+        <div class="form-grid">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" name="name" placeholder="Tu nombre" aria-label="Nombre" />
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" name="email" placeholder="tu@email.com" aria-label="Correo electrónico" />
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" placeholder="Cuéntanos cómo podemos ayudarte" aria-label="Mensaje"></textarea>
+        </div>
+        <div class="button-row">
+          <button class="btn btn-primary" type="button">Enviar</button>
+          <a class="btn btn-whatsapp" href="https://wa.me/18090000000?text=Hola%2C%20vengo%20de%20CarrosMocanos.com" target="_blank" rel="noopener">
+            <span class="icon icon-whatsapp" aria-hidden="true"></span>
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+        <p class="subtle-text">También puedes escribirnos a info@carrosmocanos.com.</p>
       </div>
     </section>
-
-    <aside class="ad-block" aria-label="Publicidad inferior">
-      <div class="ad-slot">Espacio publicitario</div>
-    </aside>
   </main>
 
   <footer class="footer">
@@ -97,7 +79,7 @@
         <ul class="footer-links">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="contacto.html" aria-current="page">Contacto</a></li>
         </ul>
       </div>
       <div>

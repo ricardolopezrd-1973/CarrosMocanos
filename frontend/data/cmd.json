@@ -1,44 +1,40 @@
 {
-  "cmd_vehicles": [
+  "cmd": [
     {
       "id": 101,
-      "make": "Toyota",
-      "model": "Corolla",
-      "year": 2001,
-      "price": 285000,
-      "mileage": 185000,
-      "images": [
-        "/assets/cmd/101/front.png",
-        "/assets/cmd/101/side.png",
-        "/assets/cmd/101/interior.png"
-      ],
-      "video": null,
-      "description": "Vehículo en buenas condiciones, motor suave, documentación al día.",
-      "premium": false,
-      "contact": {
-        "name": "Ricardo",
-        "phone": "+1-809-000-0000",
-        "whatsapp": "+18090000000"
-      }
+      "title": "Toyota Corolla XEi",
+      "year": 2020,
+      "price": 985000,
+      "image": "assets/cmd/corolla.svg",
+      "whatsapp": "18090001234",
+      "whatsapp_message": "Hola, me interesa el Toyota Corolla XEi publicado en CarrosMocanos."
     },
     {
       "id": 102,
-      "make": "Hyundai",
-      "model": "Tucson",
-      "year": 2017,
-      "price": 985000,
-      "mileage": 72000,
-      "images": [
-        "/assets/cmd/102/front.png"
-      ],
-      "video": "/assets/cmd/102/video.mp4",
-      "description": "Vehículo muy cuidado, un solo dueño.",
-      "premium": true,
-      "contact": {
-        "name": "Ricardo",
-        "phone": "+1-809-000-0000",
-        "whatsapp": "+18090000000"
-      }
+      "title": "Hyundai Tucson GLS",
+      "year": 2019,
+      "price": 1380000,
+      "image": "assets/cmd/tucson.svg",
+      "whatsapp": "18090001234",
+      "whatsapp_message": "Hola, quiero más información de la Hyundai Tucson GLS."
+    },
+    {
+      "id": 103,
+      "title": "Kia Sportage LX",
+      "year": 2021,
+      "price": 1495000,
+      "image": "assets/cmd/sportage.svg",
+      "whatsapp": "18090001234",
+      "whatsapp_message": "Estoy interesado en la Kia Sportage LX listada en CarrosMocanos."
+    },
+    {
+      "id": 104,
+      "title": "Honda Civic Touring",
+      "year": 2018,
+      "price": 1120000,
+      "image": "assets/cmd/civic.svg",
+      "whatsapp": "18090004567",
+      "whatsapp_message": "Hola, me interesa el Honda Civic Touring de CarrosMocanos."
     }
   ]
 }
