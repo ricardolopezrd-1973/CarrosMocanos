@@ -1,0 +1,437 @@
+/plan
+
+You are Codex, acting as a senior full-stack engineer and UI implementation specialist.
+
+Your task is to IMPLEMENT (not redesign, not reinterpret) the Front-End Phase 1 of the project “CarrosMocano.com”, strictly following the provided specification (W2).
+
+IMPORTANT RULES:
+- Do NOT invent features.
+- Do NOT add pages, sections, or flows not explicitly described.
+- Do NOT simplify or omit requirements.
+- Respect mobile-first responsive behavior.
+- Respect performance, SEO, and accessibility constraints.
+- Output clean, production-ready code.
+
+TECH STACK:
+- Static Front-End only
+- HTML5
+- CSS3 (no frameworks unless explicitly required by spec)
+- Vanilla JavaScript (only if required by spec)
+- JSON used as static data source (no backend, no database)
+- Must run locally via `python -m http.server`
+- Must be deployable as a static site on Render
+
+DELIVERABLES EXPECTED:
+1. Folder structure exactly as required.
+2. `index.html` as main entry point.
+3. Any additional HTML files required by W2 (only if specified).
+4. CSS files organized and linked correctly.
+5. JS files only where required.
+6. Sample JSON data files structured per W2.
+7. All paths relative and correct.
+8. No broken links, no placeholder text unless explicitly allowed.
+
+PROJECT CONTEXT:
+- This is Phase 1 (Directory-first, monetization-aware).
+- Backend does NOT exist yet.
+- Focus is speed to launch + professional quality.
+- Visual hierarchy must privilege:
+  1) Agency Directory
+  2) CarrosMocano Direct (secondary)
+- Hero section is STATIC (single branding image), but structure must allow future carousel.
+
+DO NOT:
+- Implement CMS
+- Implement authentication
+- Implement payments
+- Implement databases
+- Implement APIs beyond static JSON fetch
+
+IMPLEMENTATION FLOW:
+- Read the full W2 specification below.
+- Translate it faithfully into code.
+- If something is unclear, choose the simplest interpretation that respects the spec.
+- If something is missing, do NOT guess; leave it unimplemented.
+
+––––––––––––––––––––
+W2 SPECIFICATION (FULL, UNMODIFIED):
+––––––––––––––––––––
+
+# W2 — FRONTEND IMPLEMENTATION GUIDE (v0.6)
+
+CarrosMocanos.com — Fase 1 (Desktop & Mobile First)
+
+---
+
+## 0. Contexto y objetivo
+
+Este documento define todo lo necesario para generar el **frontend final** de Fase 1 listo para integrar con el backend FastAPI:
+
+* HTML
+* CSS
+* JS mínimo y limpio
+* SEO incorporado
+* Performance optimizado
+* Estructura visual consistente
+* Listo para deploy como static site en Render
+
+Este es el **documento maestro**. No debe haber contradicciones ni ambigüedades.
+
+---
+
+## 1. Estructura global (layout)
+
+### 1.1 Orden general del Home (desktop y mobile)
+
+1. **Header (sticky top)**
+2. **Hero estático (branding principal)**
+3. **Bloque de Publicidad Superior (Ads 1)**
+4. **Directorio de Agencias (listado inicial)**
+5. **Botón “Ver todas las agencias”**
+6. **Sección CM Directo (3–6 cards)**
+7. **Bloque de Publicidad Inferior (Ads 2)**
+8. **Footer**
+
+---
+
+## 2. Header
+
+### 2.1 Navegación desktop
+
+* Logo CarrosMocanos.com (PNG transparente, tamaño controlado)
+* Menú horizontal con los ítems:
+
+  * Inicio
+  * Directorio
+  * CM Directo
+  * Contacto
+
+### 2.2 Navegación mobile
+
+* Menú hamburguesa
+* Mismos ítems que desktop
+
+### 2.3 Comportamiento
+
+* Header fijo (sticky) al hacer scroll en desktop
+* En mobile puede ser fijo o compacto, pero siempre visible el acceso al menú
+
+---
+
+## 3. Hero (branding principal)
+
+### 3.1 Tipo
+
+* **Estático en Fase 1**
+* Contenedor preparado para convertirse en carrusel en versiones futuras (misma estructura, solo cambiar comportamiento interno)
+
+### 3.2 Contenido
+
+* Imagen única de branding (hero-desktop / hero-mobile)
+* Título visible (H1) en texto HTML superpuesto o cercano a la imagen
+
+  * Ejemplo sugerido: “El directorio de agencias verificadas en Moca.”
+* Subtítulo opcional breve
+
+### 3.3 Reglas
+
+* El hero NO contiene publicidad.
+* El hero es parte del contenido principal, orientado a identidad y confianza.
+
+---
+
+## 4. Bloque de Publicidad Superior (Ads 1)
+
+### 4.1 Ubicación
+
+* Inmediatamente **después del hero**.
+* Antes de la sección “Directorio de Agencias”.
+
+### 4.2 Objetivo
+
+* Mostrar publicidad local o futura integración con Google AdSense sin afectar experiencia de usuario ni SEO.
+
+### 4.3 Comportamiento
+
+* Desktop: banner horizontal ancho completo.
+* Mobile: banner ancho completo con altura moderada.
+
+### 4.4 SEO
+
+* Permitido por las guías de Google (no está antes del hero, no oculta contenido principal).
+
+---
+
+## 5. Directorio de Agencias (core Fase 1)
+
+### 5.1 Contenido principal
+
+* Título de sección (H2): “Directorio de Agencias de Moca”
+* Cards de agencias (3 por fila en desktop, 2 en tablet, 1 en mobile)
+
+Cada card de agencia incluye:
+
+* Nombre de la agencia
+* Dirección corta
+* Teléfono principal
+* CTA WhatsApp (botón)
+* Badge “Verificada” cuando corresponda
+
+### 5.2 Lógica de datos
+
+* Consumir datos desde `/data/agencies.json` (nombre orientativo)
+* Campos sugeridos por agencia:
+
+  * `id`
+  * `name`
+  * `address`
+  * `phone`
+  * `whatsapp`
+  * `verified` (boolean)
+  * `size` (pequeña, mediana, grande)
+  * `vehicle_types` (nuevos, usados, ambos)
+  * `services` (financiamiento, seguros, taller, etc.)
+  * `notes` (texto libre opcional)
+
+### 5.3 Presentación
+
+* Mostrar 6–9 agencias en la home.
+* Incluir botón “Ver todas las agencias” que lleve a `agencias.html` donde se listan todas.
+
+---
+
+## 6. CM Directo (CarrosMocanos Direct)
+
+### 6.1 Rol en Fase 1
+
+* Mostrar un subconjunto de vehículos gestionados directamente por CarrosMocanos.
+* Posicionarse como “beneficio adicional”, sin competir con el directorio como foco principal.
+
+### 6.2 Cards CM Directo
+
+Cada card de vehículo incluye:
+
+* Imagen del vehículo
+* Título (marca + modelo + año)
+* Precio (si está disponible)
+* CTA WhatsApp (“Quiero más información”) con mensaje prellenado
+
+### 6.3 Datos
+
+* Consumir datos desde `/data/cmd.json`.
+* Campos sugeridos:
+
+  * `id`
+  * `title`
+  * `year`
+  * `price`
+  * `image`
+  * `whatsapp_message`
+
+### 6.4 Cantidad en Home
+
+* 3–6 cards máximo en el home.
+
+---
+
+## 7. Bloque de Publicidad Inferior (Ads 2)
+
+### 7.1 Ubicación
+
+* Después de CM Directo.
+* Antes del footer.
+
+### 7.2 Objetivo
+
+* Espacio para publicidad adicional (local o AdSense) con menor impacto en UX.
+
+### 7.3 Comportamiento
+
+* Desktop y mobile: banner horizontal ancho completo.
+
+---
+
+## 8. Footer
+
+### 8.1 Contenido
+
+* Logo pequeño
+* Enlaces a:
+
+  * Términos y condiciones
+  * Política de privacidad
+  * Contacto
+* Información de contacto básica (email, WhatsApp general)
+* Enlaces a redes sociales (Facebook, Instagram, etc.)
+
+### 8.2 Estilo
+
+* Fondo oscuro coordinado con el DNA visual.
+* Texto claro, legible.
+
+---
+
+## 9. SEO
+
+### 9.1 Metadatos básicos (index.html)
+
+```html
+<title>Carros Mocanos | Directorio de agencias de vehículos en Moca</title>
+<meta name="description" content="Encuentra todas las agencias de vehículos de Moca en un solo lugar. Vehículos nuevos y usados con contacto directo por WhatsApp.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://carrosmocanos.com" />
+```
+
+### 9.2 Estructura semántica
+
+* `<header>` para el encabezado/navegación.
+* `<main>` para contenido principal.
+* `<section>` para hero, directorio, CM Directo.
+* `<aside>` para bloques de publicidad.
+* `<article>` para cards individuales de agencias y vehículos.
+* `<footer>` para el pie de página.
+
+### 9.3 Headings
+
+* Un solo `<h1>` en la home (en la sección hero), por ejemplo:
+
+  * “El directorio de agencias verificadas en Moca.”
+* Secciones:
+
+  * Directorio de agencias → `<h2>`
+  * CM Directo → `<h2>`
+* Dentro de las cards, usar `<h3>` para los nombres de agencias/vehículos.
+
+### 9.4 Buenas prácticas SEO
+
+* No colocar publicidad antes del hero.
+* No usar pop-ups intrusivos.
+* Textos visibles y legibles sobre fondos.
+* Tamaños de fuente adecuados.
+
+---
+
+## 10. Performance
+
+### 10.1 Imágenes
+
+* Formatos preferidos: WebP (con fallback JPG/PNG si aplica).
+* Peso máximo recomendado por imagen: 150 KB.
+* Hero desktop: idealmente ≤ 250 KB.
+* Hero mobile: idealmente ≤ 150 KB.
+
+### 10.2 CSS
+
+* Un archivo principal `main.css` más uno `responsive.css` si es necesario.
+* Usar variables CSS para colores y tipografías.
+* Minimizar reglas repetidas.
+
+### 10.3 JS
+
+* JS mínimo, sin frameworks pesados.
+* Usar solo lo necesario para:
+
+  * Menú mobile
+  * Interacciones simples (scroll al tope, etc.)
+
+### 10.4 Estructura
+
+* Carga ordenada: HTML → CSS → JS.
+* Posible uso de `defer` en scripts.
+
+---
+
+## 11. Global Design Rules
+
+### 11.1 Tipografía
+
+* Fuente base sugerida: `Inter`, `Poppins` o similar.
+* Pesos utilizados: 400 (regular), 600 (semibold), 700 (bold).
+* Line-height generoso (1.4–1.6).
+
+### 11.2 Sistema de color (orientativo)
+
+* Primario: rojo CarrosMocanos.
+* Secundarios: grises suaves.
+* Fondo de página: gris muy claro o blanco.
+* CTA WhatsApp: verde alineado con el branding de WhatsApp.
+
+### 11.3 Cards de agencias y vehículos
+
+* Border radius: ~12px.
+* Sombra suave (shadow pequeña, no agresiva).
+* Espaciado interno (padding): 16–20px.
+* Imagen superior en aspect-ratio 16:9.
+
+### 11.4 Botones
+
+* Forma: rectángulo con bordes levemente redondeados (~8px).
+* Estados: normal, hover (ligero cambio de tono), activo.
+* Incluir icono de WhatsApp en los botones de contacto.
+
+### 11.5 Grid y responsividad
+
+* Desktop: 3 columnas para cards.
+* Tablet: 2 columnas.
+* Mobile: 1 columna.
+
+### 11.6 Breakpoints
+
+* ≥ 1280px: layout desktop amplio
+* 1024px: tablet horizontal
+* 768px: tablet vertical / mobile grande
+* 480px: mobile estándar
+
+---
+
+## 12. Archivos esperados
+
+### 12.1 HTML
+
+* `index.html` (home)
+* `agencias.html` (listado completo de agencias)
+* `cmd.html` (listado ampliado de CM Directo)
+* `contacto.html` (formulario o información de contacto)
+
+### 12.2 CSS
+
+* `/assets/css/main.css`
+* `/assets/css/responsive.css` (si se considera necesario)
+
+### 12.3 JS
+
+* `/assets/js/main.js`
+
+### 12.4 Datos
+
+* `/data/agencies.json`
+* `/data/cmd.json`
+
+---
+
+## 13. Instrucciones para Codex
+
+Codex debe:
+
+1. Implementar exactamente este layout.
+2. Consumir los archivos JSON desde la carpeta `/data/`.
+3. Renderizar dinámicamente las cards de agencias y CM Directo.
+4. Respetar la estructura semántica HTML descrita.
+5. Respetar las reglas de SEO (headings, meta, canonical, etc.).
+6. Respetar las reglas de performance (imágenes comprimidas, JS mínimo).
+7. Respetar las Global Design Rules (tipografía, paleta, cards, botones, grid).
+8. Asegurar que el diseño se vea bien en desktop y mobile (mobile-first).
+
+---
+
+Fin del documento W2 v0.6.
+
+
+––––––––––––––––––––
+END OF SPEC
+––––––––––––––––––––
+
+After implementation, present:
+- A brief summary of the generated structure.
+- Any assumptions made (if unavoidable).
+- Confirmation that the result matches W2.
