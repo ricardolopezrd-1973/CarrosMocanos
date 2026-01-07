@@ -44,9 +44,44 @@ async function fetchJSON(path) {
 }
 
 function whatsappLink(number, message) {
-  if (!number) return '#';
+  if (!number) return '';
   const encoded = encodeURIComponent(message);
   return `https://wa.me/${number}?text=${encoded}`;
+}
+
+function normalizePhone(raw) {
+  if (!raw) return null;
+  const digits = String(raw).replace(/\D/g, '');
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `+${digits}`;
+  }
+  if (digits.length === 10) {
+    return `+1${digits}`;
+  }
+  return null;
+}
+
+function normalizeWhatsapp(raw) {
+  if (!raw) return null;
+  const digits = String(raw).replace(/\D/g, '');
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return digits;
+  }
+  if (digits.length === 10) {
+    return `1${digits}`;
+  }
+  return null;
+}
+
+function formatPhoneDisplay(raw) {
+  const digits = String(raw || '').replace(/\D/g, '');
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `+1 ${digits.slice(1, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+  }
+  if (digits.length === 10) {
+    return `+1 ${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+  }
+  return raw || '';
 }
 
 function buildAgencyCard(agency) {
@@ -54,6 +89,12 @@ function buildAgencyCard(agency) {
   container.className = 'card agency-card';
   const tags = [agency.size, agency.vehicle_types].filter(Boolean);
   const services = agency.services?.slice(0, 3).map((service) => `<li>${service}</li>`).join('') || '';
+  const whatsappNumber = normalizeWhatsapp(agency.whatsapp);
+  const whatsappHref = whatsappLink(whatsappNumber, 'Hola, vi su agencia en CarrosMocanos.com y quiero más información');
+  const phoneNormalized = normalizePhone(agency.phone);
+  const phoneDisplay = formatPhoneDisplay(agency.phone);
+  const whatsappDisabled = !whatsappNumber;
+  const phoneDisabled = !phoneNormalized;
 
   container.innerHTML = `
     <div class="card-header">
@@ -63,20 +104,22 @@ function buildAgencyCard(agency) {
     <div class="card-body">
       <h3>${agency.name}</h3>
       <p>${agency.address}</p>
-      <p class="tag"><span class="icon icon-phone" aria-hidden="true"></span><span>${agency.phone}</span></p>
+      <p class="tag"><span class="icon icon-phone" aria-hidden="true"></span><span>${phoneDisplay}</span></p>
       ${tags.length ? `<ul class="meta-list">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>` : ''}
       ${services ? `<ul class="meta-list">${services}</ul>` : ''}
       ${agency.notes ? `<p class="subtle-text">${agency.notes}</p>` : ''}
       <div class="actions">
-        <a class="btn btn-whatsapp" href="${whatsappLink(agency.whatsapp, 'Hola, vi su agencia en CarrosMocanos.com y quiero más información')}" target="_blank" rel="noopener">
+        <a class="btn btn-whatsapp${whatsappDisabled ? ' is-disabled' : ''}" href="${whatsappHref || '#'}" target="_blank" rel="noopener" ${whatsappDisabled ? 'aria-disabled="true" tabindex="-1"' : ''}>
           <span class="icon icon-whatsapp" aria-hidden="true"></span>
           WhatsApp
         </a>
-        <a class="btn btn-outline" href="tel:${agency.phone}">
+        <a class="btn btn-outline${phoneDisabled ? ' is-disabled' : ''}" href="${phoneNormalized ? `tel:${phoneNormalized}` : '#'}" ${phoneDisabled ? 'aria-disabled="true" tabindex="-1"' : ''}>
           <span class="icon icon-phone" aria-hidden="true"></span>
           Llamar
         </a>
       </div>
+      ${whatsappDisabled ? '<p class="subtle-text helper-text">WhatsApp no disponible.</p>' : ''}
+      ${phoneDisabled ? '<p class="subtle-text helper-text">Teléfono no disponible.</p>' : ''}
     </div>
   `;
 
@@ -90,6 +133,9 @@ function buildVehicleCard(vehicle) {
   const price = vehicle.price ? `RD$ ${vehicle.price.toLocaleString('es-DO')}` : 'Precio a consultar';
   const number = vehicle.whatsapp || vehicle.whatsapp_number || '';
   const message = vehicle.whatsapp_message || `Hola, quiero más información sobre ${vehicle.title}`;
+  const whatsappNumber = normalizeWhatsapp(number);
+  const whatsappHref = whatsappLink(whatsappNumber, message);
+  const whatsappDisabled = !whatsappNumber;
 
   container.innerHTML = `
     <div class="card-header">
@@ -101,11 +147,12 @@ function buildVehicleCard(vehicle) {
       ${subtitle ? `<p>${subtitle}</p>` : ''}
       <p class="price">${price}</p>
       <div class="actions">
-        <a class="btn btn-whatsapp" href="${whatsappLink(number, message)}" target="_blank" rel="noopener">
+        <a class="btn btn-whatsapp${whatsappDisabled ? ' is-disabled' : ''}" href="${whatsappHref || '#'}" target="_blank" rel="noopener" ${whatsappDisabled ? 'aria-disabled="true" tabindex="-1"' : ''}>
           <span class="icon icon-whatsapp" aria-hidden="true"></span>
           Quiero más información
         </a>
       </div>
+      ${whatsappDisabled ? '<p class="subtle-text helper-text">WhatsApp no disponible.</p>' : ''}
     </div>
   `;
 

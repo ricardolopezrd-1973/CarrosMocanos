@@ -392,6 +392,17 @@ header.is-scrolled {
   background: #1fb65b;
 }
 
+.btn.is-disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.helper-text {
+  margin-top: 6px;
+}
+
 .btn .icon {
   width: 16px;
   height: 16px;
